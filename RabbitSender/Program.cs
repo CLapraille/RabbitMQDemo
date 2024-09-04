@@ -25,10 +25,10 @@ for(int i =0; i < 60; i++)
 {
     var userInfo = dataGenerator.GeneteUserInfo();
     var userInfoJson = Newtonsoft.Json.JsonConvert.SerializeObject(userInfo);
-
-    Console.WriteLine($"Sending UserInfo { userInfo.Email }");
-
     byte[] messageBodyBytes = Encoding.UTF8.GetBytes(userInfoJson);
+
+    Console.WriteLine($"Sending UserInfo {userInfo.Email}");
+
     channel.BasicPublish(exchangeName, routingKey, null, messageBodyBytes);
     
     Thread.Sleep(1000);
